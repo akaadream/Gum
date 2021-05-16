@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RenderingLibrary;
-using XnaAndWinforms;
 using RenderingLibrary.Graphics;
 using RenderingLibrary.Math.Geometry;
 using Microsoft.Xna.Framework;
@@ -28,7 +27,7 @@ namespace Gum.Wireframe
     {
         #region Fields
 
-        XnaAndWinforms.GraphicsDeviceControl mControl;
+        //XnaAndWinforms.GraphicsDeviceControl mControl;
         SystemManagers mManagers;
         Layer mLayer;
         Cursor mCursor;
@@ -172,11 +171,11 @@ namespace Gum.Wireframe
         #endregion
 
 
-        public Ruler(GraphicsDeviceControl control, SystemManagers managers, Cursor cursor, InputLibrary.Keyboard keyboard )
+        public Ruler(object control, SystemManagers managers, Cursor cursor, InputLibrary.Keyboard keyboard )
         {
             try
             {
-                mControl = control;
+                //mControl = control;
                 mKeyboard = keyboard;
                 mManagers = managers;
                 mCursor = cursor;

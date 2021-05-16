@@ -50,8 +50,11 @@ namespace TextureCoordinateSelectionPlugin.Logic
 
         Texture2D CurrentTexture
         {
-            get => mainControl.InnerControl.CurrentTexture;
-            set => mainControl.InnerControl.CurrentTexture = value;
+            get => null;// mainControl.InnerControl.CurrentTexture;
+            set
+            {
+                ;
+            }// mainControl.InnerControl.CurrentTexture = value;
         }
 
         public void CreateControl()
@@ -60,32 +63,32 @@ namespace TextureCoordinateSelectionPlugin.Logic
             //var control = new ImageRegionSelectionControl();
             var innerControl = mainControl.InnerControl;
 
-            innerControl.AvailableZoomLevels = new int[]
-            {
-                3200,
-                1600,
-                1200,
-                800,
-                500,
-                300,
-                200,
-                150,
-                100,
-                75,
-                50,
-                33,
-                25,
-                10,
-            };
-            innerControl.StartRegionChanged += HandleStartRegionChanged;
-            innerControl.RegionChanged += HandleRegionChanged;
-            innerControl.EndRegionChanged += HandleEndRegionChanged;
+            //innerControl.AvailableZoomLevels = new int[]
+            //{
+            //    3200,
+            //    1600,
+            //    1200,
+            //    800,
+            //    500,
+            //    300,
+            //    200,
+            //    150,
+            //    100,
+            //    75,
+            //    50,
+            //    33,
+            //    25,
+            //    10,
+            //};
+            //innerControl.StartRegionChanged += HandleStartRegionChanged;
+            //innerControl.RegionChanged += HandleRegionChanged;
+            //innerControl.EndRegionChanged += HandleEndRegionChanged;
 
-            //GumCommands.Self.GuiCommands.AddWinformsControl(control, "Texture Coordinates", TabLocation.Right);
+            ////GumCommands.Self.GuiCommands.AddWinformsControl(control, "Texture Coordinates", TabLocation.Right);
 
-            GumCommands.Self.GuiCommands.AddControl(mainControl, "Texture Coordinates", TabLocation.RightBottom);
-            innerControl.DoubleClick += (not, used) =>
-                HandleRegionDoubleClicked(innerControl, ref textureOutlineRectangle);
+            //GumCommands.Self.GuiCommands.AddControl(mainControl, "Texture Coordinates", TabLocation.RightBottom);
+            //innerControl.DoubleClick += (not, used) =>
+            //    HandleRegionDoubleClicked(innerControl, ref textureOutlineRectangle);
 
             ViewModel = new MainControlViewModel();
             mainControl.DataContext = ViewModel;
@@ -119,41 +122,41 @@ namespace TextureCoordinateSelectionPlugin.Logic
 
         private void HandleViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            void RefreshSnappingGridSize()
-            {
-                if (!ViewModel.IsSnapToGridChecked)
-                {
-                    mainControl.InnerControl.SnappingGridSize = null;
-                }
-                else
-                {
-                    mainControl.InnerControl.SnappingGridSize = ViewModel.SelectedSnapToGridValue;
-                }
-            }
+            //void RefreshSnappingGridSize()
+            //{
+            //    if (!ViewModel.IsSnapToGridChecked)
+            //    {
+            //        mainControl.InnerControl.SnappingGridSize = null;
+            //    }
+            //    else
+            //    {
+            //        mainControl.InnerControl.SnappingGridSize = ViewModel.SelectedSnapToGridValue;
+            //    }
+            //}
 
-            switch (e.PropertyName)
-            {
-                case nameof(MainControlViewModel.IsSnapToGridChecked):
-                    RefreshSnappingGridSize();
-                    RefreshLineGrid();
+            //switch (e.PropertyName)
+            //{
+            //    case nameof(MainControlViewModel.IsSnapToGridChecked):
+            //        RefreshSnappingGridSize();
+            //        RefreshLineGrid();
 
-                    break;
-                case nameof(MainControlViewModel.SelectedSnapToGridValue):
-                    RefreshSnappingGridSize();
-                    RefreshLineGrid();
-                    break;
-            }
+            //        break;
+            //    case nameof(MainControlViewModel.SelectedSnapToGridValue):
+            //        RefreshSnappingGridSize();
+            //        RefreshLineGrid();
+            //        break;
+            //}
         }
 
         internal void Refresh(Texture2D textureToAssign)
         {
-            mainControl.InnerControl.CurrentTexture = textureToAssign;
+            //mainControl.InnerControl.CurrentTexture = textureToAssign;
 
-            RefreshSelector(Logic.RefreshType.OnlyIfGrabbed);
+            //RefreshSelector(Logic.RefreshType.OnlyIfGrabbed);
 
-            RefreshOutline(mainControl.InnerControl, ref textureOutlineRectangle);
+            //RefreshOutline(mainControl.InnerControl, ref textureOutlineRectangle);
 
-            RefreshLineGrid();
+            //RefreshLineGrid();
         }
 
         private void RefreshLineGrid()
@@ -342,31 +345,31 @@ namespace TextureCoordinateSelectionPlugin.Logic
 
         public void RefreshSelector(RefreshType refreshType)
         {
-            if(mainControl.InnerControl.CurrentTexture == null)
-            {
-                return;
-            }
+            //if(mainControl.InnerControl.CurrentTexture == null)
+            //{
+            //    return;
+            //}
 
-            var control = mainControl.InnerControl;
+            //var control = mainControl.InnerControl;
 
-            // early out
-            if (refreshType == RefreshType.OnlyIfGrabbed &&
-                control.RectangleSelector != null &&
-                control.RectangleSelector.SideGrabbed != FlatRedBall.SpecializedXnaControls.RegionSelection.ResizeSide.None)
-            {
-                return;
-            }
+            //// early out
+            //if (refreshType == RefreshType.OnlyIfGrabbed &&
+            //    control.RectangleSelector != null &&
+            //    control.RectangleSelector.SideGrabbed != FlatRedBall.SpecializedXnaControls.RegionSelection.ResizeSide.None)
+            //{
+            //    return;
+            //}
 
-            if(shouldRefreshAccordingToVariableSets == false)
-            {
-                return;
-            }
+            //if(shouldRefreshAccordingToVariableSets == false)
+            //{
+            //    return;
+            //}
 
-            if(SelectedState.Self.SelectedElement == null)
-            {
-                // in case a behavior is selected:
-                return;
-            }
+            //if(SelectedState.Self.SelectedElement == null)
+            //{
+            //    // in case a behavior is selected:
+            //    return;
+            //}
 
             //////////////end early out///////////////////////////////
 
@@ -386,33 +389,33 @@ namespace TextureCoordinateSelectionPlugin.Logic
                 var textureAddress = rfv.GetValue<Gum.Managers.TextureAddress>($"{instancePrefix}Texture Address");
                 if (textureAddress == Gum.Managers.TextureAddress.Custom)
                 {
-                    shouldClearOut = false;
-                    control.DesiredSelectorCount = 1;
+                    //shouldClearOut = false;
+                    //control.DesiredSelectorCount = 1;
 
-                    var selector = control.RectangleSelector;
+                    //var selector = control.RectangleSelector;
 
 
-                    selector.Left = rfv.GetValue<int>($"{instancePrefix}Texture Left");
-                    selector.Width = rfv.GetValue<int>($"{instancePrefix}Texture Width");
+                    //selector.Left = rfv.GetValue<int>($"{instancePrefix}Texture Left");
+                    //selector.Width = rfv.GetValue<int>($"{instancePrefix}Texture Width");
 
-                    selector.Top = rfv.GetValue<int>($"{instancePrefix}Texture Top");
-                    selector.Height = rfv.GetValue<int>($"{instancePrefix}Texture Height");
+                    //selector.Top = rfv.GetValue<int>($"{instancePrefix}Texture Top");
+                    //selector.Height = rfv.GetValue<int>($"{instancePrefix}Texture Height");
 
-                    selector.Visible = true;
-                    selector.ShowHandles = true;
-                    selector.ShowMoveCursorWhenOver = true;
+                    //selector.Visible = true;
+                    //selector.ShowHandles = true;
+                    //selector.ShowMoveCursorWhenOver = true;
 
-                    control.SystemManagers.Renderer.Camera.X =
-                        selector.Left + selector.Width / 2.0f;
-                    control.SystemManagers.Renderer.Camera.Y =
-                        selector.Top + selector.Height / 2.0f;
+                    //control.SystemManagers.Renderer.Camera.X =
+                    //    selector.Left + selector.Width / 2.0f;
+                    //control.SystemManagers.Renderer.Camera.Y =
+                    //    selector.Top + selector.Height / 2.0f;
 
                 }
             }
 
             if (shouldClearOut)
             {
-                control.DesiredSelectorCount = 0;
+                //control.DesiredSelectorCount = 0;
             }
         }
     }

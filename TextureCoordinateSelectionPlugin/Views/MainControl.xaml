@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" 
-             xmlns:local="clr-namespace:TextureCoordinateSelectionPlugin.Views" xmlns:specializedxnacontrols="clr-namespace:FlatRedBall.SpecializedXnaControls;assembly=FlatRedBall.SpecializedXnaControls"
+             xmlns:local="clr-namespace:TextureCoordinateSelectionPlugin.Views" xmlns:specializedxnacontrols="clr-namespace:FlatRedBall.SpecializedXnaControls;assembly=FlatRedBall.SpecializedXnaControls" xmlns:monogamecontrols="clr-namespace:MonoGameInWpf.MonoGameControls;assembly=MonoGameInWpf" xmlns:gui="clr-namespace:Gum.Gui;assembly=Gum"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -20,8 +20,8 @@
                       ItemsSource="{Binding AvailableSnapToGridValues}" IsEnabled="{Binding IsSnapToGridComboBoxEnabled}">
             </ComboBox>
         </StackPanel>
-        <WindowsFormsHost Grid.Row="1">
-            <specializedxnacontrols:ImageRegionSelectionControl x:Name="InnerControl"></specializedxnacontrols:ImageRegionSelectionControl>
-        </WindowsFormsHost>
+
+        <gui:RenderingLibraryWpfControl Grid.Row="1" x:Name="InnerControl"></gui:RenderingLibraryWpfControl>
+        
     </Grid>
 </UserControl>

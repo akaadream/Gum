@@ -30,7 +30,7 @@ namespace Gum.ToolCommands
 
         public void RefreshWireframe()
         {
-            mWireframeControl.RefreshDisplay();
+            //mWireframeControl.RefreshDisplay();
         }
     }
 }

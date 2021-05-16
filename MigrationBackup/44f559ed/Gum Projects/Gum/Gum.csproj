@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{121AC5A5-8F6A-42B2-8863-DEBC45B052BC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gum</RootNamespace>
+    <AssemblyName>Gum</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath>objNetFramework\</BaseIntermediateOutputPath>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Data\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GUM; MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Data\</OutputPath>
+    <DefineConstants>TRACE;GUM</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UnitTest|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UnitTest\Data\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GUM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug2\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GUM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Gum.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AppCenter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.4.2.0\lib\net461\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.4.2.0\lib\net461\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.4.2.0\lib\net461\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.8.0.1641, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\lib\net452\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.0.1\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D11.4.0.1\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.0.1\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.0.1\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.MediaFoundation.4.0.1\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XAudio2.4.0.1\lib\net45\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.4.0.1\lib\net45\SharpDX.XInput.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.2.669, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.2\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.2.669, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.2\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.nativelibrary, Version=2.0.2.669, Culture=neutral, PublicKeyToken=502ed628492ab262, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.2\lib\net461\SQLitePCLRaw.nativelibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.2.669, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.2\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TargaImage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\TargaImage.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Xceed\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GumRuntime\ElementSaveExtensions.GumRuntime.cs">
+      <Link>Wireframe\ElementSaveExtensions.GumRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\GumRuntime\GraphicalUiElement.cs">
+      <Link>Wireframe\GraphicalUiElement.cs</Link>
+    </Compile>
+    <Compile Include="..\GumRuntime\InstanceSaveExtensionMethods.GumRuntime.cs">
+      <Link>Wireframe\InstanceSaveExtensionMethods.GumRuntime.cs</Link>
+    </Compile>
+    <Compile Include="Commands\EditCommands.cs" />
+    <Compile Include="Commands\FileCommands.cs" />
+    <Compile Include="Commands\GuiCommands.cs" />
+    <Compile Include="Commands\WireframeCommands.cs" />
+    <Compile Include="Controls\ChildrenLayoutControl.cs" />
+    <Compile Include="Controls\ColorDisplay.xaml.cs">
+      <DependentUpon>ColorDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeightUnitsControl.cs" />
+    <Compile Include="Controls\ListBoxMessageBox.xaml.cs">
+      <DependentUpon>ListBoxMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StateView.Designer.cs">
+      <DependentUpon>StateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextHorizontalAlignmentControl.cs" />
+    <Compile Include="Controls\TextVerticalAlignmentControl.cs" />
+    <Compile Include="Controls\ToggleButtonOptionContainer.cs" />
+    <Compile Include="Controls\WidthUnitsControl.cs" />
+    <Compile Include="Controls\XOriginControl.cs" />
+    <Compile Include="Controls\XUnitsControl.cs" />
+    <Compile Include="Controls\YOriginControl.cs" />
+    <Compile Include="Controls\YUnitsControl.cs" />
+    <Compile Include="DataTypes\BehaviorSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\ComponentSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\ElementSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\GumProjectSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\InstanceSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\PluginSettingsSave.cs" />
+    <Compile Include="DataTypes\RecursiveVariableFinder.cs" />
+    <Compile Include="DataTypes\StateSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\VariableListSaveExtensionMethods.cs" />
+    <Compile Include="DataTypes\VariableSaveExtensionMethods.cs" />
+    <Compile Include="Debug\ProjectVerifier.cs" />
+    <Compile Include="Events\GumEvents.cs" />
+    <Compile Include="Graphics\Animation\AnimationChain.cs" />
+    <Compile Include="Graphics\Animation\AnimationChainList.cs" />
+    <Compile Include="Graphics\Animation\AnimationFrame.cs" />
+    <Compile Include="Graphics\Animation\Content\AnimationChainListSave.cs" />
+    <Compile Include="Graphics\Animation\Content\AnimationChainSave.cs" />
+    <Compile Include="Graphics\Animation\Content\AnimationFrameSave.cs" />
+    <Compile Include="Gui\RenderingLibraryWpfControl.cs" />
+    <Compile Include="Gui\Window\DeleteOptionsWindow.xaml.cs">
+      <DependentUpon>DeleteOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\CopyPasteLogic.cs" />
+    <Compile Include="Logic\FileWatch\FileWatchLogic.cs" />
+    <Compile Include="Logic\ReorderLogic.cs" />
+    <Compile Include="Logic\VariableSaveLogic.cs" />
+    <Compile Include="Managers\DeleteLogic.cs" />
+    <Compile Include="Managers\FileChangeReactionLogic.cs" />
+    <Compile Include="Logic\FileWatch\FileWatchManager.cs" />
+    <Compile Include="Managers\GraphicalUiElementManager.cs" />
+    <Compile Include="Managers\HotkeyManager.cs" />
+    <Compile Include="Plugins\AlignmentButtons\CommonControlLogic.cs" />
+    <Compile Include="Plugins\CirclePlugin\MainCirclePlugin.cs" />
+    <Compile Include="Plugins\Errors\AllErrorsViewModel.cs" />
+    <Compile Include="Plugins\Errors\ErrorChecker.cs" />
+    <Compile Include="Plugins\Errors\ErrorDisplay.xaml.cs">
+      <DependentUpon>ErrorDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Errors\ErrorListEntry.xaml.cs">
+      <DependentUpon>ErrorListEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Errors\ErrorViewModel.cs" />
+    <Compile Include="Plugins\Errors\MainErrorsPlugin.cs" />
+    <Compile Include="Plugins\Fonts\MainFontPlugin.cs" />
+    <Compile Include="Plugins\ImportPlugin\Manager\ImportLogic.cs" />
+    <Compile Include="Plugins\ImportPlugin\ViewModel\ImportFileViewModel.cs" />
+    <Compile Include="Plugins\ImportPlugin\Views\ImportFileView.xaml.cs">
+      <DependentUpon>ImportFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Inheritance\MainInheritancePlugin.cs" />
+    <Compile Include="Plugins\ParentPlugin\MainParentPlugin.cs" />
+    <Compile Include="Plugins\ProjectPropertiesWindowPlugin\MainPlugin.cs" />
+    <Compile Include="Plugins\ProjectPropertiesWindowPlugin\ProjectPropertiesControl.xaml.cs">
+      <DependentUpon>ProjectPropertiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Forms\UndoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\UndoList.Designer.cs">
+      <DependentUpon>UndoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Controls\WireframeEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\Controls\WireframeEditControl.designer.cs">
+      <DependentUpon>WireframeEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Forms\DeleteOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\DeleteOptionsWindow.Designer.cs">
+      <DependentUpon>DeleteOptionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Forms\PluginsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\PluginsWindow.designer.cs">
+      <DependentUpon>PluginsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Delete\DeleteObjectPlugin.cs" />
+    <Compile Include="Gui\Plugins\MainWindowPlugin.cs" />
+    <Compile Include="Commands\GumCommands.cs" />
+    <Compile Include="CommandLine\CommandLineManager.cs" />
+    <Compile Include="Managers\EventsViewModel.cs" />
+    <Compile Include="Managers\FileLocations.cs" />
+    <Compile Include="Managers\FontManager.cs" />
+    <Compile Include="Managers\NameVerifier.cs" />
+    <Compile Include="Managers\ObjectRemover.cs" />
+    <Compile Include="Managers\OutputManager.cs" />
+    <Compile Include="Plugins\RenameLogicPlugin\MainRenameLogic.cs" />
+    <Compile Include="Plugins\StatePlugin\MainStatePlugin.cs" />
+    <Compile Include="Plugins\VariableGrid\DeletingVariablesInCategoriesMessageBox.xaml.cs">
+      <DependentUpon>DeletingVariablesInCategoriesMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\RenameLogic.cs" />
+    <Compile Include="Managers\Singleton.cs" />
+    <Compile Include="Mvvm\ObservableCollectionExtensions.cs" />
+    <Compile Include="Mvvm\ViewModel.cs" />
+    <Compile Include="Plugins\AlignmentButtons\AlignmentPluginControl.xaml.cs">
+      <DependentUpon>AlignmentPluginControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\AlignmentButtons\AnchorControl.xaml.cs">
+      <DependentUpon>AnchorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\AlignmentButtons\DockControl.xaml.cs">
+      <DependentUpon>DockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\AlignmentButtons\AlignmentMainPlugin.cs" />
+    <Compile Include="Plugins\BaseClasses\InternalPlugin.cs" />
+    <Compile Include="Plugins\Behaviors\BehaviorsControl.xaml.cs">
+      <DependentUpon>BehaviorsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Behaviors\BehaviorsViewModel.cs" />
+    <Compile Include="Plugins\Behaviors\CheckListBehaviorItem.cs" />
+    <Compile Include="Plugins\Behaviors\MainPlugin.cs" />
+    <Compile Include="Plugins\ProjectPropertiesWindowPlugin\ProjectPropertiesViewModel.cs" />
+    <Compile Include="Plugins\Undos\MainPlugin.cs" />
+    <Compile Include="Plugins\Undos\UndoDisplay.xaml.cs">
+      <DependentUpon>UndoDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\Undos\UndosViewModel.cs" />
+    <Compile Include="Plugins\VariableGrid\AddVariableWindow.xaml.cs">
+      <DependentUpon>AddVariableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\VariableGrid\MainControlViewModel.cs" />
+    <Compile Include="Plugins\VariableGrid\VariableRemoveButton.xaml.cs">
+      <DependentUpon>VariableRemoveButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyGridHelpers\Converters\AvailableContainedTypeConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\AvailableGuidesTypeConverter.cs" />
+    <Compile Include="Input\CursorExtensionMethods.cs" />
+    <Compile Include="Managers\DragDropManager.cs" />
+    <Compile Include="Managers\ElementTreeViewManager.cs" />
+    <Compile Include="Managers\ElementTreeViewManager.RightClick.cs" />
+    <Compile Include="Managers\MenuStripManager.cs" />
+    <Compile Include="Managers\ObjectFinder.cs" />
+    <Compile Include="Plugins\VariableGrid\PropertyGridManager.cs" />
+    <Compile Include="Managers\StandardElementsManager.cs" />
+    <Compile Include="Plugins\StatePlugin\StateTreeViewManager.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\StatePlugin\StateTreeViewManager.RightClick.cs" />
+    <Compile Include="Plugins\BaseClasses\PluginBase.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\PluginContainer.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Managers\ProjectManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\AvailableBaseTypeConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\AvailableInstancesConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\AvailableStatesConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\FileListWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyGridHelpers\Converters\FileListWindow.Designer.cs">
+      <DependentUpon>FileListWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyGridHelpers\Converters\FontTypeConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\RestrictiveEnumConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\StringOptionsTypeConverter.cs" />
+    <Compile Include="PropertyGridHelpers\Converters\VariableListConverter.cs" />
+    <Compile Include="Plugins\VariableGrid\ElementSaveDisplayer.cs" />
+    <Compile Include="PropertyGridHelpers\EventInstanceMember.cs" />
+    <Compile Include="PropertyGridHelpers\Excluders\SpritePropertyGridVariableExcluder.cs" />
+    <Compile Include="PropertyGridHelpers\Excluders\TextPropertyGridVariableExcluder.cs" />
+    <Compile Include="PropertyGridHelpers\GumProjectSavePropertyGridDisplayer.cs" />
+    <Compile Include="PropertyGridHelpers\InstanceSavePropertyDescriptor.cs" />
+    <Compile Include="PropertyGridHelpers\GuideRectanglePropertyGridDisplayer.cs" />
+    <Compile Include="PropertyGridHelpers\PropertyDescriptorHelper.cs" />
+    <Compile Include="PropertyGridHelpers\PropertyGridDisplayer.cs" />
+    <Compile Include="PropertyGridHelpers\ReflectingParameterDescriptor.cs" />
+    <Compile Include="PropertyGridHelpers\ReflectingPropertyDescriptorHelper.cs" />
+    <Compile Include="PropertyGridHelpers\SetVariableLogic.cs" />
+    <Compile Include="Plugins\VariableGrid\StateReferencingInstanceMember.cs" />
+    <Compile Include="PropertyGridHelpers\UiTypeConverters\ModalTypeConverter.cs" />
+    <Compile Include="PropertyGridHelpers\VariableInCategoryPropagationLogic.cs" />
+    <Compile Include="Reflection\LateBinder.cs" />
+    <Compile Include="Reflection\TypeManager.cs" />
+    <Compile Include="RenderingLibrary\Blend.cs" />
+    <Compile Include="RenderingLibrary\IPositionedSizedObjectExtensionMethods.cs" />
+    <Compile Include="Settings\GeneralSettingsFile.cs" />
+    <Compile Include="Plugins\VariableGrid\TestWpfControl.xaml.cs">
+      <DependentUpon>TestWpfControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolCommands\ElementCommands.cs" />
+    <Compile Include="ToolCommands\GuiCommands.cs" />
+    <Compile Include="ToolCommands\ProjectCommands.cs" />
+    <Compile Include="ToolStates\GumState.cs" />
+    <Compile Include="ToolStates\ISelectedState.cs" />
+    <Compile Include="ToolStates\ProjectState.cs" />
+    <Compile Include="ToolStates\SelectedState.cs" />
+    <Compile Include="ToolStates\StateStackingMode.cs" />
+    <Compile Include="Undo\UndoManager.cs" />
+    <Compile Include="Undo\UndoObject.cs" />
+    <Compile Include="Undo\UndoPlugin.cs" />
+    <Compile Include="Undo\UndoSnapshot.cs" />
+    <Compile Include="Wireframe\CameraController.cs" />
+    <Compile Include="Wireframe\EditingManager.cs" />
+    <Compile Include="Wireframe\EditingManager.RightClick.cs" />
+    <Compile Include="Wireframe\Editors\PolygonWireframeEditor.cs" />
+    <Compile Include="Wireframe\ElementWithState.cs" />
+    <Compile Include="Wireframe\GrabbedInitialState.cs" />
+    <Compile Include="Wireframe\GraphicalOutline.cs" />
+    <Compile Include="Wireframe\HighlightManager.cs" />
+    <Compile Include="Wireframe\InterpolatingColor.cs" />
+    <Compile Include="Wireframe\OriginDisplay.cs" />
+    <Compile Include="Wireframe\PlatformDetails.cs" />
+    <Compile Include="Wireframe\ResizeHandles.cs" />
+    <Compile Include="Wireframe\Ruler.cs" />
+    <Compile Include="Wireframe\ScrollBarControlLogic.cs" />
+    <Compile Include="Wireframe\SelectionManager.cs" />
+    <Compile Include="Wireframe\Editors\StandardWireframeEditor.cs" />
+    <Compile Include="Wireframe\TimeManager.cs" />
+    <Compile Include="Wireframe\WireframeControl.cs" />
+    <Compile Include="Wireframe\Editors\WireframeEditor.cs" />
+    <Compile Include="Wireframe\WireframeObjectManager.cs" />
+    <Compile Include="Wireframe\WireframeObjectManager.Guide.cs" />
+    <Compile Include="Wireframe\WireframeObjectManager.RepresentationCreation.cs" />
+    <EmbeddedResource Include="Controls\StateView.resx">
+      <DependentUpon>StateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Controls\WireframeEditControl.resx">
+      <DependentUpon>WireframeEditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Forms\DeleteOptionsWindow.resx">
+      <DependentUpon>DeleteOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Forms\PluginsWindow.resx">
+      <DependentUpon>PluginsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Forms\UndoList.resx">
+      <DependentUpon>UndoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PropertyGridHelpers\Converters\FileListWindow.resx">
+      <DependentUpon>FileListWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Content\TestFont.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Plugins\VariableGrid\PropertyGridManager.RightClick.cs" />
+    <None Include="Launcher.au3" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonFormsAndControls\CommonFormsAndControls.csproj">
+      <Project>{54bfe18a-84b4-48ab-92e0-0774ea019202}</Project>
+      <Name>CommonFormsAndControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GumDataTypes\GumDataTypes.csproj">
+      <Project>{5971a187-f6b2-4d65-a277-5613ded1f50f}</Project>
+      <Name>GumDataTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputLibraryMonoGame\InputLibraryMonoGame.csproj">
+      <Project>{938d9a00-8529-4ce8-9077-e0a3994a73ea}</Project>
+      <Name>InputLibraryMonoGame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGameInWpf\MonoGameInWpf.csproj">
+      <Project>{86e47da0-d932-48a2-8dac-a5715373ab88}</Project>
+      <Name>MonoGameInWpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderingLibraryStandard\RenderingLibraryStandard.csproj">
+      <Project>{f3223a3e-8d50-4505-9936-34337ad502fa}</Project>
+      <Name>RenderingLibraryStandard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolsUtilities\ToolsUtilitiesStandard.csproj">
+      <Project>{cae35f4b-8a10-4a85-b2fb-7f4a8d7c7138}</Project>
+      <Name>ToolsUtilitiesStandard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfDataUi\WpfDataUi.csproj">
+      <Project>{47241002-7eb5-433b-b931-a530bb6b84ee}</Project>
+      <Name>WpfDataUi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libraries\Xceed\Xceed.Wpf.AvalonDock.dll" />
+    <None Include="Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+    <None Include="Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+    <None Include="Libraries\Xceed\Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+    <None Include="Libraries\Xceed\Xceed.Wpf.DataGrid.dll" />
+    <None Include="Libraries\Xceed\Xceed.Wpf.Toolkit.dll" />
+    <Resource Include="Content\Icons\Sizing\BottomSide.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Content\Icons\Sizing\Fill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Content\Icons\Sizing\LeftSide.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Content\Icons\Sizing\RightSide.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Content\Icons\Sizing\TopSide.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Launcher.exe" />
+    <Resource Include="Content\Icons\AnchorPlugin\BottomLeft.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\BottomMiddle.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\BottomRight.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\MiddleLeft.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\MiddleMiddle.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\MiddleRight.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\TopLeft.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\TopMiddle.png" />
+    <Resource Include="Content\Icons\AnchorPlugin\TopRight.png" />
+    <None Include="Content\Icons\Alignment\CenterAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Alignment\LeftAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Alignment\RightAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Alignment\BottomAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Alignment\TopAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Alignment\VerticalCenterAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PercentageFromLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromCenterX.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PercentageFromTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromBottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromCenterY.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Origins\BottomOrigin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Origins\CenterOrigin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Origins\LeftOrigin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Origins\RightOrigin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Origins\TopOrigin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\AbsoluteWidth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\PercentageOfOtherHeight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\PercentOfParent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\RelativeToChildren.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\RelativeToParent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\AbsoluteHeight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\PercentageOfOtherWidth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\PercentOfParent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\RelativeToChildren.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\RelativeToParent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\ChildrenLayout\LeftToRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\ChildrenLayout\Regular.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\ChildrenLayout\TopToBottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\PercentageOfFileHeight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\PercentageOfFileWidth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\Units\PixelsFromCenterYInverted.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\AddPoint.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\HeightUnits\MaintainFileAspectRatioHeight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Icons\WidthUnits\MaintainFileAspectRatioWidth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Content\Cursors\AddCursor.cur" />
+    <Content Include="Content\Icons\Origins\Baseline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Icons\Units\PixelsFromBaseline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\TargaImage.dll" />
+    <Content Include="Libraries\TargaImage.xml" />
+    <None Include="Content\InvalidTexture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\TestFont_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Plugins\readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+    <Folder Include="Libraries\Xna\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\ColorDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ListBoxMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gui\Window\DeleteOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Errors\ErrorDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Errors\ErrorListEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ImportPlugin\Views\ImportFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\ProjectPropertiesWindowPlugin\ProjectPropertiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\AlignmentButtons\AlignmentPluginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\AlignmentButtons\AnchorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\AlignmentButtons\DockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Behaviors\BehaviorsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\Undos\UndoDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\VariableGrid\AddVariableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\VariableGrid\DeletingVariablesInCategoriesMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\VariableGrid\VariableRemoveButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Plugins\VariableGrid\TestWpfControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets'))" />
+    <Error Condition="!Exists('..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets'))" />
+  </Target>
+  <Import Project="..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets" Condition="Exists('..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

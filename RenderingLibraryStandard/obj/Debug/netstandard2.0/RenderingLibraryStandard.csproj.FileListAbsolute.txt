@@ -1,0 +1,13 @@
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.csprojAssemblyReference.cache
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.AssemblyInfoInputs.cache
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.AssemblyInfo.cs
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.csproj.CoreCompileInputs.cache
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\Content\BmfcTemplate.bmfc
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\RenderingLibraryStandard.deps.json
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\RenderingLibraryStandard.dll
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\RenderingLibraryStandard.pdb
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\ToolsUtilitiesStandard.dll
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\bin\Debug\netstandard2.0\ToolsUtilitiesStandard.pdb
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.csproj.CopyComplete
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.dll
+C:\Users\vchel\Documents\GitHub\Gum\RenderingLibraryStandard\obj\Debug\netstandard2.0\RenderingLibraryStandard.pdb

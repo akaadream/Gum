@@ -1,0 +1,10 @@
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\InputLibrary.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\InputLibrary.pdb
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\Microsoft.Xna.Framework.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\Microsoft.Xna.Framework.xml
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\bin\Release\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\obj\x86\Release\InputLibrary.csprojAssemblyReference.cache
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\obj\x86\Release\InputLibrary.csproj.CopyComplete
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\obj\x86\Release\InputLibrary.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibrary\obj\x86\Release\InputLibrary.pdb

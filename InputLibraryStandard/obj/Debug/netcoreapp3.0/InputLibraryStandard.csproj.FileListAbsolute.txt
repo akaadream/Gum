@@ -1,0 +1,9 @@
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\bin\Debug\netcoreapp3.0\InputLibraryStandard.deps.json
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\bin\Debug\netcoreapp3.0\InputLibraryStandard.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\bin\Debug\netcoreapp3.0\InputLibraryStandard.pdb
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.csprojAssemblyReference.cache
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.AssemblyInfoInputs.cache
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.AssemblyInfo.cs
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.csproj.CoreCompileInputs.cache
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.dll
+C:\Users\vchel\Documents\GitHub\Gum\InputLibraryStandard\obj\Debug\netcoreapp3.0\InputLibraryStandard.pdb

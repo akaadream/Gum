@@ -112,10 +112,6 @@
       <Project>{121ac5a5-8f6a-42b2-8863-debc45b052bc}</Project>
       <Name>Gum</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InputLibrary\InputLibrary.csproj">
-      <Project>{938d9a00-8529-4ce8-9077-e0a3994a73ea}</Project>
-      <Name>InputLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RenderingLibrary\RenderingLibrary.csproj">
       <Project>{a86ee399-7c93-42e1-80ed-ca4cbf4ca573}</Project>
       <Name>RenderingLibrary</Name>
@@ -126,6 +122,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

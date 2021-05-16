@@ -45,11 +45,12 @@ namespace Gum
 
         private System.Windows.Forms.Timer FileWatchTimer;
         private FlatRedBall.AnimationEditorForms.Controls.WireframeEditControl WireframeEditControl;
-        private Wireframe.WireframeControl wireframeControl1;
         ScrollBarControlLogic scrollBarControlLogic;
         public System.Windows.Forms.FlowLayoutPanel ToolbarPanel;
-        Panel gumEditorPanel;
+        //Panel gumEditorPanel;
         StateView stateView;
+
+
 
         #endregion
 
@@ -67,64 +68,6 @@ namespace Gum
             this.KeyPreview = true;
             this.KeyDown += HandleKeyDown;
 
-            // Create the wireframe control, but don't add it...
-            CreateWireframeControl();
-
-            CreateWireframeEditControl();
-            CreateEditorToolbarPanel();
-
-
-            stateView = new StateView();
-            this.AddWinformsControl(stateView, "States", TabLocation.CenterTop);
-
-            ((SelectedState)SelectedState.Self).Initialize(stateView);
-            GumCommands.Self.Initialize(this);
-            GumCommands.Self.GuiCommands.AddControl(gumEditorPanel, "Editor", TabLocation.RightTop);
-
-            TypeManager.Self.Initialize();
-
-            var addCursor = new System.Windows.Forms.Cursor(this.GetType(), "Content.Cursors.AddCursor.cur");
-            // Vic says - I tried
-            // to instantiate the ElementTreeImages
-            // in the ElementTreeViewManager. I move 
-            // the code there and it works, but then at
-            // some point it stops working and it breaks. Not 
-            // sure why, Winforms editor must be doing something
-            // beyond the generation of code which isn't working when
-            // I move it to custom code. Oh well, maybe one day I'll move
-            // to a wpf window and can get rid of this
-            ElementTreeViewManager.Self.Initialize(this.components, ElementTreeImages, addCursor);
-            // State Tree ViewManager needs init before MenuStripManager
-            StateTreeViewManager.Self.Initialize(this.stateView.TreeView, this.stateView.StateContextMenuStrip);
-            // ProperGridManager before MenuStripManager
-            PropertyGridManager.Self.Initialize();
-            // menu strip manager needs to be initialized before plugins:
-            MenuStripManager.Self.Initialize(this);
-
-            PluginManager.Self.Initialize(this);
-
-            StandardElementsManager.Self.Initialize();
-
-            
-            ToolCommands.GuiCommands.Self.Initialize(wireframeControl1);
-
-
-            Wireframe.WireframeObjectManager.Self.Initialize(WireframeEditControl, wireframeControl1, addCursor);
-
-            wireframeControl1.XnaUpdate += () =>
-                Wireframe.WireframeObjectManager.Self.Activity();
-
-
-            EditingManager.Self.Initialize(this.WireframeContextMenuStrip);
-            OutputManager.Self.Initialize(this.OutputTextBox);
-            // ProjectManager.Initialize used to happen here, but I 
-            // moved it down to the Load event for MainWindow because
-            // ProjectManager.Initialize may load a project, and if it
-            // does, then we need to make sure that the wireframe controls
-            // are set up properly before that happens.
-            HandleXnaInitialize();
-
-            InitializeFileWatchTimer();
 
         }
 
@@ -142,111 +85,120 @@ namespace Gum
 
         private void CreateEditorToolbarPanel()
         {
-            this.ToolbarPanel = new System.Windows.Forms.FlowLayoutPanel();
-            gumEditorPanel.Controls.Add(this.ToolbarPanel);
-            // 
-            // ToolbarPanel
-            // 
-            //this.ToolbarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            //| System.Windows.Forms.AnchorStyles.Right)));
-            this.ToolbarPanel.Dock = DockStyle.Top;
-            this.ToolbarPanel.Location = new System.Drawing.Point(0, 22);
-            this.ToolbarPanel.Name = "ToolbarPanel";
-            this.ToolbarPanel.Size = new System.Drawing.Size(532, 31);
-            this.ToolbarPanel.TabIndex = 2;
+            //this.ToolbarPanel = new System.Windows.Forms.FlowLayoutPanel();
+            //gumEditorPanel.Controls.Add(this.ToolbarPanel);
+            //// 
+            //// ToolbarPanel
+            //// 
+            ////this.ToolbarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            ////| System.Windows.Forms.AnchorStyles.Right)));
+            //this.ToolbarPanel.Dock = DockStyle.Top;
+            //this.ToolbarPanel.Location = new System.Drawing.Point(0, 22);
+            //this.ToolbarPanel.Name = "ToolbarPanel";
+            //this.ToolbarPanel.Size = new System.Drawing.Size(532, 31);
+            //this.ToolbarPanel.TabIndex = 2;
         }
 
-        private void CreateWireframeControl()
+        private WireframeControl CreateWireframeControl()
         {
-            this.wireframeControl1 = new Gum.Wireframe.WireframeControl();
-            // 
-            // wireframeControl1
-            // 
-            this.wireframeControl1.AllowDrop = true;
-            //this.wireframeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            //| System.Windows.Forms.AnchorStyles.Left)
-            //| System.Windows.Forms.AnchorStyles.Right)));
-            this.wireframeControl1.Dock = DockStyle.Fill;
-            this.wireframeControl1.ContextMenuStrip = this.WireframeContextMenuStrip;
-            this.wireframeControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wireframeControl1.DesiredFramesPerSecond = 30F;
-            this.wireframeControl1.Location = new System.Drawing.Point(0, 52);
-            this.wireframeControl1.Name = "wireframeControl1";
-            this.wireframeControl1.Size = new System.Drawing.Size(532, 452);
-            this.wireframeControl1.TabIndex = 0;
-            this.wireframeControl1.Text = "wireframeControl1";
+            Wireframe.WireframeControl wireframeControl1;
+            wireframeControl1 = new Gum.Wireframe.WireframeControl();
 
-            this.wireframeControl1.DragDrop += DragDropManager.Self.HandleFileDragDrop;
-            this.wireframeControl1.DragEnter += DragDropManager.Self.HandleFileDragEnter;
-            this.wireframeControl1.DragOver += (sender, e) =>
-            {
-                //this.DoDragDrop(e.Data, DragDropEffects.Move | DragDropEffects.Copy);
-                //DragDropManager.Self.HandleDragOver(sender, e);
+            GumCommands.Self.GuiCommands.AddControl(wireframeControl1, "Editor", TabLocation.RightTop);
 
-            };
+            wireframeControl1.InitializeXna(this.Handle);
+            //// 
+            //// wireframeControl1
+            //// 
+            //wireframeControl1.AllowDrop = true;
+            ////this.wireframeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            ////| System.Windows.Forms.AnchorStyles.Left)
+            ////| System.Windows.Forms.AnchorStyles.Right)));
+            //wireframeControl1.Dock = DockStyle.Fill;
+            //wireframeControl1.ContextMenuStrip = this.WireframeContextMenuStrip;
+            //wireframeControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            //wireframeControl1.DesiredFramesPerSecond = 30F;
+            //wireframeControl1.Location = new System.Drawing.Point(0, 52);
+            //wireframeControl1.Name = "wireframeControl1";
+            //wireframeControl1.Size = new System.Drawing.Size(532, 452);
+            //wireframeControl1.TabIndex = 0;
+            //wireframeControl1.Text = "wireframeControl1";
 
-                
-            wireframeControl1.ErrorOccurred += (exception) => Crashes.TrackError(exception);
+            //wireframeControl1.DragDrop += DragDropManager.Self.HandleFileDragDrop;
+            //wireframeControl1.DragEnter += DragDropManager.Self.HandleFileDragEnter;
+            //wireframeControl1.DragOver += (sender, e) =>
+            //{
+            //    //this.DoDragDrop(e.Data, DragDropEffects.Move | DragDropEffects.Copy);
+            //    //DragDropManager.Self.HandleDragOver(sender, e);
 
-            this.wireframeControl1.QueryContinueDrag += (sender, args) =>
-            {
-                args.Action = DragAction.Continue;
-            };
-
-            this.wireframeControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.wireframeControl1_MouseClick);
-
-            this.wireframeControl1.KeyDown += (o, args) =>
-            {
-                if(args.KeyCode == Keys.Tab)
-                {
-                    GumCommands.Self.GuiCommands.ToggleToolVisibility();
-                }
-            };
-
-            gumEditorPanel = new Panel();
-
-            // place the scrollbars first so they are in front of everything
-            scrollBarControlLogic = new ScrollBarControlLogic(gumEditorPanel, wireframeControl1);
-            scrollBarControlLogic.SetDisplayedArea(800, 600);
-            wireframeControl1.CameraChanged += () =>
-            {
-                if (ProjectManager.Self.GumProjectSave != null)
-                {
-
-                    scrollBarControlLogic.SetDisplayedArea(
-                        ProjectManager.Self.GumProjectSave.DefaultCanvasWidth,
-                        ProjectManager.Self.GumProjectSave.DefaultCanvasHeight);
-                }
-                else
-                {
-                    scrollBarControlLogic.SetDisplayedArea(800, 600);
-                }
-
-                scrollBarControlLogic.UpdateScrollBars();
-                scrollBarControlLogic.UpdateScrollBarsToCameraPosition();
-
-            };
+            //};
 
 
-            //... add it here, so it can be done after scroll bars and other controls
-            gumEditorPanel.Controls.Add(this.wireframeControl1);
+            //wireframeControl1.ErrorOccurred += (exception) => Crashes.TrackError(exception);
+
+            //wireframeControl1.QueryContinueDrag += (sender, args) =>
+            //{
+            //    args.Action = DragAction.Continue;
+            //};
+
+            //wireframeControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.wireframeControl1_MouseClick);
+
+            //wireframeControl1.KeyDown += (o, args) =>
+            //{
+            //    if(args.KeyCode == Keys.Tab)
+            //    {
+            //        GumCommands.Self.GuiCommands.ToggleToolVisibility();
+            //    }
+            //};
+
+            //gumEditorPanel = new Panel();
+
+            //// place the scrollbars first so they are in front of everything
+            //scrollBarControlLogic = new ScrollBarControlLogic(gumEditorPanel, wireframeControl1);
+            //scrollBarControlLogic.SetDisplayedArea(800, 600);
+            //wireframeControl1.CameraChanged += () =>
+            //{
+            //    if (ProjectManager.Self.GumProjectSave != null)
+            //    {
+
+            //        scrollBarControlLogic.SetDisplayedArea(
+            //            ProjectManager.Self.GumProjectSave.DefaultCanvasWidth,
+            //            ProjectManager.Self.GumProjectSave.DefaultCanvasHeight);
+            //    }
+            //    else
+            //    {
+            //        scrollBarControlLogic.SetDisplayedArea(800, 600);
+            //    }
+
+            //    scrollBarControlLogic.UpdateScrollBars();
+            //    scrollBarControlLogic.UpdateScrollBarsToCameraPosition();
+
+            //};
+
+
+            ////... add it here, so it can be done after scroll bars and other controls
+            //gumEditorPanel.Controls.Add(wireframeControl1);
+
+            return wireframeControl1;
         }
 
         private void CreateWireframeEditControl()
         {
-            this.WireframeEditControl = new FlatRedBall.AnimationEditorForms.Controls.WireframeEditControl();
-            gumEditorPanel.Controls.Add(this.WireframeEditControl);
-            // 
-            // WireframeEditControl
-            // 
-            //this.WireframeEditControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            //| System.Windows.Forms.AnchorStyles.Right)));
-            this.WireframeEditControl.Dock = DockStyle.Top;
-            this.WireframeEditControl.Location = new System.Drawing.Point(0, 0);
-            this.WireframeEditControl.Margin = new System.Windows.Forms.Padding(4);
-            this.WireframeEditControl.Name = "WireframeEditControl";
-            this.WireframeEditControl.PercentageValue = 100;
-            this.WireframeEditControl.TabIndex = 1;
+
+            //this.WireframeEditControl = new FlatRedBall.AnimationEditorForms.Controls.WireframeEditControl();
+            //gumEditorPanel.Controls.Add(this.WireframeEditControl);
+
+            //// 
+            //// WireframeEditControl
+            //// 
+            ////this.WireframeEditControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            ////| System.Windows.Forms.AnchorStyles.Right)));
+            //this.WireframeEditControl.Dock = DockStyle.Top;
+            //this.WireframeEditControl.Location = new System.Drawing.Point(0, 0);
+            //this.WireframeEditControl.Margin = new System.Windows.Forms.Padding(4);
+            //this.WireframeEditControl.Name = "WireframeEditControl";
+            //this.WireframeEditControl.PercentageValue = 100;
+            //this.WireframeEditControl.TabIndex = 1;
         }
 
         private void InitializeFileWatchTimer()
@@ -270,15 +222,16 @@ namespace Gum
         //void HandleXnaInitialize(object sender, EventArgs e)
         void HandleXnaInitialize()
         {
-            this.wireframeControl1.Initialize(WireframeEditControl, gumEditorPanel);
+            //this.wireframeControl1.Initialize(WireframeEditControl, gumEditorPanel);
             scrollBarControlLogic.Managers = global::RenderingLibrary.SystemManagers.Default;
             scrollBarControlLogic.UpdateScrollBars();
 
-            this.wireframeControl1.Parent.Resize += (not, used) =>
-            {
-                UpdateWireframeControlSizes();
-                scrollBarControlLogic.UpdateScrollBars();
-            };
+            throw new NotImplementedException();
+            //this.wireframeControl1.Parent.Resize += (not, used) =>
+            //{
+            //    UpdateWireframeControlSizes();
+            //    scrollBarControlLogic.UpdateScrollBars();
+            //};
 
             UpdateWireframeControlSizes();
         }
@@ -293,10 +246,6 @@ namespace Gum
 
             ToolbarPanel.Width = ToolbarPanel.Parent.Width;
 
-            wireframeControl1.Width = wireframeControl1.Parent.Width;
-
-            // Add location.Y to account for the shortcut bar at the top.
-            wireframeControl1.Height = wireframeControl1.Parent.Height - wireframeControl1.Location.Y;
         }
 
         private void VariableCenterAndEverythingRight_SplitterMoved(object sender, SplitterEventArgs e)
@@ -323,6 +272,70 @@ namespace Gum
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // This needs to happen before adding anything
+            GumCommands.Self.Initialize(this);
+
+            // Create the wireframe control, but don't add it...
+            var wireframeControl1 = CreateWireframeControl();
+
+            CreateWireframeEditControl();
+            CreateEditorToolbarPanel();
+
+
+            stateView = new StateView();
+            this.AddWinformsControl(stateView, "States", TabLocation.CenterTop);
+
+            ((SelectedState)SelectedState.Self).Initialize(stateView);
+
+            //GumCommands.Self.GuiCommands.AddControl(gumEditorPanel, "Editor", TabLocation.RightTop);
+
+
+            TypeManager.Self.Initialize();
+
+            var addCursor = new System.Windows.Forms.Cursor(this.GetType(), "Content.Cursors.AddCursor.cur");
+            // Vic says - I tried
+            // to instantiate the ElementTreeImages
+            // in the ElementTreeViewManager. I move 
+            // the code there and it works, but then at
+            // some point it stops working and it breaks. Not 
+            // sure why, Winforms editor must be doing something
+            // beyond the generation of code which isn't working when
+            // I move it to custom code. Oh well, maybe one day I'll move
+            // to a wpf window and can get rid of this
+            ElementTreeViewManager.Self.Initialize(this.components, ElementTreeImages, addCursor);
+            // State Tree ViewManager needs init before MenuStripManager
+            StateTreeViewManager.Self.Initialize(this.stateView.TreeView, this.stateView.StateContextMenuStrip);
+            // ProperGridManager before MenuStripManager
+            PropertyGridManager.Self.Initialize();
+            // menu strip manager needs to be initialized before plugins:
+            MenuStripManager.Self.Initialize(this);
+
+            PluginManager.Self.Initialize(this);
+
+            StandardElementsManager.Self.Initialize();
+
+
+            ToolCommands.GuiCommands.Self.Initialize(wireframeControl1);
+
+
+            Wireframe.WireframeObjectManager.Self.Initialize(WireframeEditControl, wireframeControl1, addCursor);
+
+            //wireframeControl1.XnaUpdate += () =>
+            //    Wireframe.WireframeObjectManager.Self.Activity();
+
+
+            EditingManager.Self.Initialize(this.WireframeContextMenuStrip);
+            OutputManager.Self.Initialize(this.OutputTextBox);
+            // ProjectManager.Initialize used to happen here, but I 
+            // moved it down to the Load event for MainWindow because
+            // ProjectManager.Initialize may load a project, and if it
+            // does, then we need to make sure that the wireframe controls
+            // are set up properly before that happens.
+            HandleXnaInitialize();
+
+            InitializeFileWatchTimer();
+
+
             ProjectManager.Self.RecentFilesUpdated += MenuStripManager.Self.RefreshRecentFilesMenuItems;
             ProjectManager.Self.Initialize();
 
@@ -331,7 +344,9 @@ namespace Gum
 
                 // Apply FrameRate, but keep it within sane limits
                 float FrameRate = Math.Max(Math.Min(ProjectManager.Self.GeneralSettingsFile.FrameRate, 60), 10);
-                wireframeControl1.DesiredFramesPerSecond = FrameRate;
+
+                throw new NotImplementedException();
+                //wireframeControl1.DesiredFramesPerSecond = FrameRate;
 
                 var settings = ProjectManager.Self.GeneralSettingsFile;
 
@@ -358,17 +373,20 @@ namespace Gum
         {
             var settings = ProjectManager.Self.GeneralSettingsFile;
 
-            settings.MainWindowBounds = DesktopBounds;
-            settings.MainWindowState = WindowState;
+            if(settings != null)
+            {
+                settings.MainWindowBounds = DesktopBounds;
+                settings.MainWindowState = WindowState;
 
-            settings.LeftAndEverythingSplitterDistance
-                = LeftAndEverythingContainer.SplitterDistance;
-            settings.PreviewSplitterDistance
-                = PreviewSplitContainer.SplitterDistance;
-            settings.StatesAndVariablesSplitterDistance
-                = StatesAndVariablesContainer.SplitterDistance;
+                settings.LeftAndEverythingSplitterDistance
+                    = LeftAndEverythingContainer.SplitterDistance;
+                settings.PreviewSplitterDistance
+                    = PreviewSplitContainer.SplitterDistance;
+                settings.StatesAndVariablesSplitterDistance
+                    = StatesAndVariablesContainer.SplitterDistance;
 
-            settings.Save();
+                settings.Save();
+            }
         }
 
         private void VariablesAndEverythingElse_SplitterMoved(object sender, SplitterEventArgs e)
@@ -392,7 +410,7 @@ namespace Gum
             return tabPage;
         }
 
-        public TabPage AddWpfControl(System.Windows.Controls.UserControl control, string tabTitle, TabLocation tabLocation = TabLocation.Center)
+        public TabPage AddWpfControl(System.Windows.Controls.ContentControl control, string tabTitle, TabLocation tabLocation = TabLocation.Center)
         {
             string AppTheme = "Light";
             control.Resources = new System.Windows.ResourceDictionary();
@@ -478,7 +496,7 @@ namespace Gum
             return tabControl;
         }
 
-        private void GetContainers(System.Windows.Controls.UserControl control, out TabPage tabPage, out TabControl tabControl)
+        private void GetContainers(System.Windows.Controls.ContentControl control, out TabPage tabPage, out TabControl tabControl)
         {
             tabPage = null;
             tabControl = null;
@@ -553,7 +571,7 @@ namespace Gum
             }
         }
 
-        bool DoesTabContainControl(TabPage tabPage, System.Windows.Controls.UserControl control)
+        bool DoesTabContainControl(TabPage tabPage, System.Windows.Controls.ContentControl control)
         {
             var foundHost = tabPage.Controls
                 .FirstOrDefault(item => item is System.Windows.Forms.Integration.ElementHost)

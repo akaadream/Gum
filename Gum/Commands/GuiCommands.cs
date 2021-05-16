@@ -39,7 +39,7 @@ namespace Gum.Commands
             PropertyGridManager.Self.RefreshVariablesDataGridValues();
         }
 
-        public TabPage AddControl(System.Windows.Controls.UserControl control, string tabTitle, TabLocation tabLocation = TabLocation.CenterBottom)
+        public TabPage AddControl(System.Windows.Controls.ContentControl control, string tabTitle, TabLocation tabLocation = TabLocation.CenterBottom)
         {
             CheckForInitialization();
             return mMainWindow.AddWpfControl(control, tabTitle, tabLocation);

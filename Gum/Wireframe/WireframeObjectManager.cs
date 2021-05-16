@@ -123,7 +123,7 @@ namespace Gum.Wireframe
             mWireframeControl = wireframeControl;
             mWireframeControl.AfterXnaInitialize += HandleAfterXnaIntiailize;
 
-            mWireframeControl.KeyDown += HandleKeyPress;
+            //mWireframeControl.KeyDown += HandleKeyPress;
 
             mEditControl = editControl;
             mEditControl.ZoomChanged += HandleControlZoomChange;

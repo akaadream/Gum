@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using XnaAndWinforms;
 using Microsoft.Xna.Framework;
 using System.Windows.Forms;
 using RenderingLibrary.Math.Geometry;
@@ -21,6 +20,8 @@ using Gum.Debug;
 using Microsoft.Xna.Framework.Graphics;
 
 using WinCursor = System.Windows.Forms.Cursor;
+using MonoGameInWpf.MonoGameControls;
+using Gum.Gui;
 
 namespace Gum.Wireframe
 {
@@ -43,9 +44,37 @@ namespace Gum.Wireframe
 
     #endregion
 
-    public class WireframeControl : GraphicsDeviceControl
+    public class ServiceContainer : IServiceProvider
+    {
+        Dictionary<Type, object> services = new Dictionary<Type, object>();
+
+
+        /// <summary>
+        /// Adds a new service to the collection.
+        /// </summary>
+        public void AddService<T>(T service)
+        {
+            services.Add(typeof(T), service);
+        }
+
+
+        /// <summary>
+        /// Looks up the specified service.
+        /// </summary>
+        public object GetService(Type serviceType)
+        {
+            object service;
+
+            services.TryGetValue(serviceType, out service);
+
+            return service;
+        }
+    }
+
+    public class WireframeControl : RenderingLibraryWpfControl
     {
         #region Fields
+
 
         WireframeEditControl mWireframeEditControl;
 
@@ -97,19 +126,19 @@ namespace Gum.Wireframe
             HotkeyManager.Self.HandleKeyDownWireframe(e);
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            bool handled = HotkeyManager.Self.ProcessCmdKeyWireframe(ref msg, keyData);
+        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        //{
+        //    bool handled = HotkeyManager.Self.ProcessCmdKeyWireframe(ref msg, keyData);
 
-            if (handled)
-            {
-                return true;
-            }
-            else
-            {
-                return base.ProcessCmdKey(ref msg, keyData);
-            }
-        }
+        //    if (handled)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return base.ProcessCmdKey(ref msg, keyData);
+        //    }
+        //}
 
 
         #endregion
@@ -120,61 +149,60 @@ namespace Gum.Wireframe
         {
             try
             {
-                mWireframeEditControl = wireframeEditControl;
+                //mWireframeEditControl = wireframeEditControl;
 
 
-                mWireframeEditControl.ZoomChanged += HandleZoomChanged;
+                //mWireframeEditControl.ZoomChanged += HandleZoomChanged;
 
-                SystemManagers.Default = new SystemManagers();
-                SystemManagers.Default.Initialize(GraphicsDevice);
+
 
                 Renderer.Self.SamplerState = SamplerState.PointWrap;
 
                 LoaderManager.Self.ContentLoader = new ContentLoader();
 
                 LoaderManager.Self.Initialize(null, "content/TestFont.fnt", Services, null);
-                CameraController.Self.Initialize(Camera, mWireframeEditControl, Width, Height);
+                CameraController.Self.Initialize(Camera, mWireframeEditControl, (int)Width, (int)Height);
                 CameraController.Self.CameraChanged += () => CameraChanged?.Invoke();
 
-                InputLibrary.Cursor.Self.Initialize(this);
-                InputLibrary.Keyboard.Self.Initialize(this);
+                //InputLibrary.Cursor.Self.Initialize(this);
+                //InputLibrary.Keyboard.Self.Initialize(this);
 
                 mScreenBounds = new LineRectangle();
                 mScreenBounds.Name = "Gum Screen Bounds";
                 mScreenBounds.Width = 800;
                 mScreenBounds.Height = 600;
                 mScreenBounds.Color = ScreenBoundsColor;
-                ShapeManager.Self.Add(mScreenBounds, SelectionManager.Self.UiLayer);              
+                ShapeManager.Self.Add(mScreenBounds, SelectionManager.Self.UiLayer);
 
-                this.KeyDown += OnKeyDown;
-                this.MouseDown += CameraController.Self.HandleMouseDown;
-                this.MouseMove += CameraController.Self.HandleMouseMove;
-                this.MouseWheel += CameraController.Self.HandleMouseWheel;
-                this.mTopRuler = new Ruler(this, null, InputLibrary.Cursor.Self, InputLibrary.Keyboard.Self);
+                //this.KeyDown += OnKeyDown;
+                //this.MouseDown += CameraController.Self.HandleMouseDown;
+                //this.MouseMove += CameraController.Self.HandleMouseMove;
+                //this.MouseWheel += CameraController.Self.HandleMouseWheel;
+                //this.mTopRuler = new Ruler(this, null, InputLibrary.Cursor.Self, InputLibrary.Keyboard.Self);
 
-                this.MouseEnter += (not, used) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Entered");
-                    mouseHasEntered = true;
-                };
-                this.MouseLeave += (not, used) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Left");
+                //this.MouseEnter += (not, used) =>
+                //{
+                //    System.Diagnostics.Debug.WriteLine("Entered");
+                //    mouseHasEntered = true;
+                //};
+                //this.MouseLeave += (not, used) =>
+                //{
+                //    System.Diagnostics.Debug.WriteLine("Left");
 
-                    mouseHasEntered = false;
-                };
+                //    mouseHasEntered = false;
+                //};
 
-                mLeftRuler = new Ruler(this, null, InputLibrary.Cursor.Self, InputLibrary.Keyboard.Self);
-                mLeftRuler.RulerSide = RulerSide.Left;
+                //mLeftRuler = new Ruler(this, null, InputLibrary.Cursor.Self, InputLibrary.Keyboard.Self);
+                //mLeftRuler.RulerSide = RulerSide.Left;
 
-                if (AfterXnaInitialize != null)
-                {
-                    AfterXnaInitialize(this, null);
-                }
+                //if (AfterXnaInitialize != null)
+                //{
+                //    AfterXnaInitialize(this, null);
+                //}
 
-                UpdateToProject();
+                //UpdateToProject();
 
-                mHasInitialized = true;
+                //mHasInitialized = true;
 
             }
             catch(Exception exception)
@@ -188,7 +216,7 @@ namespace Gum.Wireframe
             this.mLeftRuler.ZoomValue = mWireframeEditControl.PercentageValue / 100.0f;
             this.mTopRuler.ZoomValue = mWireframeEditControl.PercentageValue / 100.0f;
 
-            Invalidate();
+            //Invalidate();
         }
 
         #endregion
@@ -265,35 +293,35 @@ namespace Gum.Wireframe
             }
         }
 
-        protected override void PreDrawUpdate()
-        {
-            if (mHasInitialized)
-            {
-                Activity();
-            }
-        }
+        //protected override void PreDrawUpdate()
+        //{
+        //    if (mHasInitialized)
+        //    {
+        //        Activity();
+        //    }
+        //}
 
-        protected override void Draw()
-        {
-            if (mHasInitialized)
-            {
-                Color backgroundColor = new Color();
-                if(ProjectManager.Self.GeneralSettingsFile != null)
-                {
-                    backgroundColor.R = ProjectManager.Self.GeneralSettingsFile.CheckerColor1R;
-                    backgroundColor.G = ProjectManager.Self.GeneralSettingsFile.CheckerColor1G;
-                    backgroundColor.B = ProjectManager.Self.GeneralSettingsFile.CheckerColor1B;
-                }
-                else
-                {
-                    backgroundColor.R = 150;
-                    backgroundColor.G = 150;
-                    backgroundColor.B = 150;
-                }
-                GraphicsDevice.Clear(backgroundColor);
+        //protected override void Draw()
+        //{
+        //    if (mHasInitialized)
+        //    {
+        //        Color backgroundColor = new Color();
+        //        if(ProjectManager.Self.GeneralSettingsFile != null)
+        //        {
+        //            backgroundColor.R = ProjectManager.Self.GeneralSettingsFile.CheckerColor1R;
+        //            backgroundColor.G = ProjectManager.Self.GeneralSettingsFile.CheckerColor1G;
+        //            backgroundColor.B = ProjectManager.Self.GeneralSettingsFile.CheckerColor1B;
+        //        }
+        //        else
+        //        {
+        //            backgroundColor.R = 150;
+        //            backgroundColor.G = 150;
+        //            backgroundColor.B = 150;
+        //        }
+        //        GraphicsDevice.Clear(backgroundColor);
 
-                Renderer.Self.Draw(null);
-            }
-        }
+        //        Renderer.Self.Draw(null);
+        //    }
+        //}
     }
 }

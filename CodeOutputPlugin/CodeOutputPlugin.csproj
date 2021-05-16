@@ -83,10 +83,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FlatRedBall.SpecializedXnaControls\FlatRedBall.SpecializedXnaControls.csproj">
-      <Project>{8c80ba7b-1cba-4579-9382-d9dc6c365070}</Project>
-      <Name>FlatRedBall.SpecializedXnaControls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GumDataTypes\GumDataTypes.csproj">
       <Project>{5971a187-f6b2-4d65-a277-5613ded1f50f}</Project>
       <Name>GumDataTypes</Name>
@@ -94,10 +90,6 @@
     <ProjectReference Include="..\Gum\Gum.csproj">
       <Project>{121ac5a5-8f6a-42b2-8863-debc45b052bc}</Project>
       <Name>Gum</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InputLibrary\InputLibrary.csproj">
-      <Project>{938d9a00-8529-4ce8-9077-e0a3994a73ea}</Project>
-      <Name>InputLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\RenderingLibrary\RenderingLibrary.csproj">
       <Project>{a86ee399-7c93-42e1-80ed-ca4cbf4ca573}</Project>
@@ -123,6 +115,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
