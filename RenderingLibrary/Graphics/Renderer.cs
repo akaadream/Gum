@@ -23,6 +23,9 @@ namespace RenderingLibrary.Graphics
         public bool Wrap;
 
         public Rectangle? ClipRectangle;
+
+        public RenderTarget2D RenderTarget;
+
     }
 
     #endregion
@@ -402,20 +405,41 @@ namespace RenderingLibrary.Graphics
                 if(renderable.Visible)
                 {
                     var oldClip = mRenderStateVariables.ClipRectangle;
-                    AdjustRenderStates(mRenderStateVariables, layer, renderable);
+                    var oldRenderTarget = mRenderStateVariables.RenderTarget;
+
+                    AdjustRenderStateVariables(mRenderStateVariables, layer, renderable);
+
                     bool didClipChange = oldClip != mRenderStateVariables.ClipRectangle;
+                    bool didRenderTargetChange = oldRenderTarget != mRenderStateVariables.RenderTarget;
 
                     renderable.Render(spriteRenderer, managers);
 
 
-                    if (RenderUsingHierarchy)
+                    if (RenderUsingHierarchy && renderable.Children.Count > 0)
                     {
                         Render(renderable.Children, managers, layer);
+                    }
+
+                    if(didRenderTargetChange)
+                    {
+                        var toDispose = mRenderStateVariables.RenderTarget;
+                        
+                        mRenderStateVariables.RenderTarget = oldRenderTarget;
+
+                        spriteRenderer.BeginSpriteBatch(mRenderStateVariables, layer, BeginType.Begin, mCamera);
+                        spriteRenderer.Draw(toDispose, new Rectangle(0, 0, toDispose.Width, toDispose.Height), new Rectangle(0, 0, toDispose.Width, toDispose.Height), Color.White, null);
+
+                        // apply the drawn render target:
+                        spriteRenderer.End();
+
+
+                        toDispose?.Dispose() ;
                     }
 
                     if (didClipChange)
                     {
                         mRenderStateVariables.ClipRectangle = oldClip;
+
                         spriteRenderer.BeginSpriteBatch(mRenderStateVariables, layer, BeginType.Begin, mCamera);
                     }
                 }
@@ -489,7 +513,7 @@ namespace RenderingLibrary.Graphics
         }
 
 
-        private void AdjustRenderStates(RenderStateVariables renderState, Layer layer, IRenderableIpso renderable)
+        private void AdjustRenderStateVariables(RenderStateVariables renderState, Layer layer, IRenderableIpso renderable)
         {
             BlendState renderBlendState = renderable.BlendState;
             bool wrap = renderable.Wrap;
@@ -523,21 +547,32 @@ namespace RenderingLibrary.Graphics
 
             if (renderable.ClipsChildren)
             {
-                Rectangle clipRectangle = GetScissorRectangleFor(Camera, renderable);
 
-                if (renderState.ClipRectangle == null || clipRectangle != renderState.ClipRectangle.Value)
+                var userRenderTarget = true;
+                if(userRenderTarget)
                 {
-                    //todo: Don't just overwrite it, constrain this rect to the existing one, if it's not null: 
-
-                    var adjustedRectangle = clipRectangle;
-                    if (renderState.ClipRectangle != null)
-                    {
-                        adjustedRectangle = ConstrainRectangle(clipRectangle, renderState.ClipRectangle.Value);
-                    }
-
-
-                    renderState.ClipRectangle = adjustedRectangle;
+                    var renderTarget = new RenderTarget2D(GraphicsDevice, MathFunctions.RoundToInt(renderable.Width), MathFunctions.RoundToInt(renderable.Height));
+                    renderState.RenderTarget = renderTarget;
                     shouldResetStates = true;
+                }
+                else
+                {
+                    Rectangle clipRectangle = GetScissorRectangleFor(Camera, renderable);
+
+                    if (renderState.ClipRectangle == null || clipRectangle != renderState.ClipRectangle.Value)
+                    {
+                        //todo: Don't just overwrite it, constrain this rect to the existing one, if it's not null: 
+
+                        var adjustedRectangle = clipRectangle;
+                        if (renderState.ClipRectangle != null)
+                        {
+                            adjustedRectangle = ConstrainRectangle(clipRectangle, renderState.ClipRectangle.Value);
+                        }
+
+
+                        renderState.ClipRectangle = adjustedRectangle;
+                        shouldResetStates = true;
+                    }
                 }
 
             }
@@ -545,6 +580,7 @@ namespace RenderingLibrary.Graphics
 
             if (shouldResetStates)
             {
+                // this ends the old sprite batch, so we want to end it first...
                 spriteRenderer.BeginSpriteBatch(renderState, layer, BeginType.Begin, mCamera);
             }
         }

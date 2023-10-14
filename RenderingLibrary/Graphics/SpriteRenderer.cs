@@ -82,8 +82,8 @@ namespace RenderingLibrary.Graphics
 
             var depthStencilState = DepthStencilState.DepthRead;
 
-            int width = camera.ClientWidth;
-            int height = camera.ClientHeight;
+            int width = renderStates.RenderTarget?.Width ?? camera.ClientWidth;
+            int height = renderStates.RenderTarget?.Height ??  camera.ClientHeight;
 
             Effect effectiveEffect = null;
 
@@ -184,6 +184,18 @@ namespace RenderingLibrary.Graphics
             // I'll change it and let's see if it breaks anything.
             if (beginType == BeginType.Begin)
             {
+                mSpriteBatch.End();
+
+                // now set the render target:
+                if (renderStates.RenderTarget != null)
+                {
+                    mSpriteBatch.GraphicsDevice.SetRenderTarget(renderStates.RenderTarget);
+                }
+                else
+                {
+                    mSpriteBatch.GraphicsDevice.SetRenderTarget(null);
+                }
+
                 mSpriteBatch.ReplaceRenderStates(SpriteSortMode.Deferred,
                     renderStates.BlendState,
                     samplerState,
